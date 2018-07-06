@@ -4,7 +4,7 @@
         {% if top_row %}
             <tr>
                 {% for  group, options, index in widget.optgroups %}
-                    <td style="width: {{ col_width }}%">
+                    <td style="width: {{ col_width|safe }}%">
                         {% if forloop.first %} {{ top_row.0 }}{% endif %}
                         {% if forloop.last %} {{ top_row.1 }}{% endif %}
                     </td>
@@ -27,7 +27,7 @@
         <tr>
             {% for group, options, index in widget.optgroups %}
 
-                <td>
+                <td style="width: {{ col_width|safe }}%">
                     {% for option in options %}
                         {% with o=option %}
                             <label{% if o.attrs.id %} for="{{ o.attrs.id }}"{% endif %}>{{ o.label }}</label>
@@ -38,7 +38,7 @@
 
             {% endfor %}
         </tr>
-        {% if bottom_row %}
+        {% if bottom_row|safe %}
             <tr>
                 {% for  group, options, index in widget.optgroups %}
                     <td style="width: {{ col_width }}%">
